@@ -59,7 +59,7 @@ export default class NewApi {
     this.query = newQuery;
   }
 }
-
+let gallery = '';
 const newApi = new NewApi();
 const refs = {
   searchForm: document.querySelector('.search-form'),
