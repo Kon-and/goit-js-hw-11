@@ -52,7 +52,7 @@ export default class NewApi {
     this.query = newQuery;
   }
 }
-
+gallery = new simpleLightbox('.gallery a');
 const newApi = new NewApi();
 const refs = {
   searchForm: document.querySelector('.search-form'),
@@ -103,7 +103,6 @@ async function pictureRender() {
     newApi.successNotification();
   }
   render(apiAnswer);
-  gallery = new simpleLightbox('.gallery a');
 }
 
 async function maxLoad() {
