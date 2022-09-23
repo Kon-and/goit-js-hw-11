@@ -110,9 +110,8 @@ async function pictureRender() {
     refs.loadButton.classList.remove('is-hidden');
     newApi.successNotification();
   }
-
   render(apiAnswer);
-  gallery = new simpleLightbox('.gallery a');
+  refs.gallery = new simpleLightbox('.gallery a');
 }
 
 async function maxLoad() {
