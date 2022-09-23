@@ -100,6 +100,7 @@ function scroll() {
 
 async function pictureRender() {
   const apiAnswer = await newApi.seach();
+  gallery = new simpleLightbox('.gallery a');
   if (newApi.query === '') {
     refs.loadButton.classList.add('is-hidden');
     return Notiflix.Notify.failure(`Please enter a query`);
@@ -111,7 +112,6 @@ async function pictureRender() {
     newApi.successNotification();
   }
   render(apiAnswer);
-  gallery = new simpleLightbox('.gallery a');
 }
 
 async function maxLoad() {
