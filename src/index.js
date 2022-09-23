@@ -111,7 +111,7 @@ async function pictureRender() {
     newApi.successNotification();
   }
   render(apiAnswer);
-  refs.gallery = new simpleLightbox('.gallery a');
+  this.gallery = new simpleLightbox('.gallery a');
 }
 
 async function maxLoad() {
