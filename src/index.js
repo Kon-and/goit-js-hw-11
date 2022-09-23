@@ -77,6 +77,7 @@ function onSeach(e) {
   newApi.resetPage();
 
   pictureRender();
+  gallery = new simpleLightbox('.gallery a');
 }
 
 function render(picture) {
@@ -100,7 +101,7 @@ function scroll() {
 
 async function pictureRender() {
   const apiAnswer = await newApi.seach();
-  gallery = new simpleLightbox('.gallery a');
+
   if (newApi.query === '') {
     refs.loadButton.classList.add('is-hidden');
     return Notiflix.Notify.failure(`Please enter a query`);
