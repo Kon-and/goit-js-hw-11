@@ -15,22 +15,29 @@ export default class NewApi {
   }
 
   async seach() {
-    const API = axios.create({
-      baseURL: `https://pixabay.com/api/`,
-    });
-    const key = '30089678-f9fe145ecd596460b7018b7a0';
-    const seachResult = await API.get(
-      `?key=${key}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`
-    );
-    if (seachResult.data.totalHits === 0) {
+    try {
+      const API = axios.create({
+        baseURL: `https://pixabay.com/api/`,
+      });
+
+      const key = '30089678-f9fe145ecd596460b7018b7a0';
+      const seachResult = await API.get(
+        `?key=${key}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`
+      );
+      if (seachResult.data.totalHits === 0) {
+        Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+      }
+
+      this.length = seachResult.data.hits.length;
+      this.totalHits = seachResult.data.totalHits;
+      return seachResult.data.hits;
+    } catch (error) {
       Notiflix.Notify.failure(
-        'Sorry, there are no images matching your search query. Please try again.'
+        "We're sorry, but you've reached the end of search results."
       );
     }
-
-    this.length = seachResult.data.hits.length;
-    this.totalHits = seachResult.data.totalHits;
-    return seachResult.data.hits;
   }
 
   successNotification() {
@@ -102,21 +109,15 @@ async function pictureRender() {
   } else {
     refs.loadButton.classList.remove('is-hidden');
     newApi.successNotification();
-    gallery = new simpleLightbox('.gallery a');
   }
 
   render(apiAnswer);
+  gallery = new simpleLightbox('.gallery a');
 }
 
 async function maxLoad() {
-  try {
-    const loadMoreAnswerApi = await newApi.seach();
-    render(loadMoreAnswerApi);
-    scroll();
-    gallery.refresh();
-  } catch (error) {
-    Notiflix.Notify.failure(
-      "We're sorry, but you've reached the end of search results."
-    );
-  }
+  const loadMoreAnswerApi = await newApi.seach();
+  render(loadMoreAnswerApi);
+  scroll();
+  gallery.refresh();
 }
