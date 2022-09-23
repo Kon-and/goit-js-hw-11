@@ -52,7 +52,7 @@ export default class NewApi {
     this.query = newQuery;
   }
 }
-gallery = new simpleLightbox('.gallery a');
+
 const newApi = new NewApi();
 const refs = {
   searchForm: document.querySelector('.search-form'),
@@ -68,6 +68,7 @@ function onSeach(e) {
   refs.gallery.innerHTML = '';
   newApi.searchQuery = e.currentTarget.elements.searchQuery.value.trim();
   newApi.resetPage();
+
   pictureRender();
 }
 
@@ -101,7 +102,9 @@ async function pictureRender() {
   } else {
     refs.loadButton.classList.remove('is-hidden');
     newApi.successNotification();
+    gallery = new simpleLightbox('.gallery a');
   }
+
   render(apiAnswer);
 }
 

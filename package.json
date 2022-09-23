@@ -15,7 +15,7 @@
   "author": "Andrey Kostenko <kosten.andr@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/Kon-and/goit-js-hw-11"
   },
   "dependencies": {
     "axios": "^0.27.2",
